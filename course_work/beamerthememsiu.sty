@@ -1,0 +1,156 @@
+% version   = "0.1"
+\usepackage{cmap}
+\usepackage[russian]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[TS1,T2A]{fontenc}
+\usepackage{amsmath,amssymb,amsfonts,amscd,amsthm}
+%\usepackage{ragged2e} % для выравнивания текста (\Centering, \RaggedRight and \RaggedLeft)
+\usepackage{listingsutf8} % это лучше, чем verbatim
+\usepackage{russmath} % для корректного переноса матем. формул
+
+\long\def\head#1#2#3#4{
+%---- Определяем название  ----
+\def\mytitle{#4} 
+\title{\mytitle} % чтобы это название отражалось в нижнем колонтитуле
+
+%---- Это титульный слайд -----------------
+\frame{
+\vspace{-2.5cm}
+%\thispagestyle{empty} % чтобы не было на титульной странице колонтитулов
+\parbox{9cm}{
+\includegraphics[width=0.2\textwidth]{msiu_logo}\\
+\small{#1\\
+\texttt{#2}
+}
+\color{gray}{
+\hrule
+}
+}\\
+\vspace{10mm}
+#3
+\vspace{2mm}
+
+{\large{\bfseries{\mytitle}}} % название
+}
+}
+
+
+
+
+%%% тема шаблона %%%%
+\useoutertheme{infolines}
+%%%
+
+%%% чтобы футер состоял из двух полосок %%%%%%%%%
+\setbeamertemplate{footline}
+{
+  \hbox{%
+  \begin{beamercolorbox}[wd=.5\paperwidth,ht=2.25ex,dp=1ex,center]{title in head/foot}%
+    \usebeamerfont{title in head/foot}\insertshorttitle
+  \end{beamercolorbox}%
+  \begin{beamercolorbox}[wd=.5\paperwidth,ht=2.25ex,dp=1ex,right]{date in head/foot}%
+    \usebeamerfont{date in head/foot}
+    \insertframenumber{} / \inserttotalframenumber\hspace*{2ex} 
+  \end{beamercolorbox}}%
+  \vskip0pt%
+}
+%%%%%%%
+
+%---
+\setbeamercolor{title}{fg=fontcolor,bg=bgcolor}% цвет фона и текста в заголовке слайда
+\setbeamercolor{frametitle}{fg=fontcolor,bg=bgcolor}% цвет фона и текста в заголовке фрейма 
+%---
+
+%%%%%%%%%%%%%%%% цветовая палитра %%%%%%%%%%%%%%%%%%%%%%
+
+%%%--- если использовать другую цветовую гамму, нужно раскомментировать один из следующих блоков ---%%%%
+
+%------------------
+%%% сине-фиолетовый  %%%
+%\definecolor{fontcolor}{RGB}{7,20,153} % тёмно-синий шрифт
+%\definecolor{bgcolor}{RGB}{174,179,233} % нежно-фиолетовый фон
+%\beamertemplateshadingbackground{yellow!5}{blue!15}% цвет фона жёлто-голубой
+%------------------
+
+%-------------------
+%%% тёмно-синий %%%%
+%\definecolor{fontcolor}{RGB}{255,255,255} % белый шрифт
+% \definecolor{bgcolor}{RGB}{57,66,146} % тёмно-синий фон
+%\beamertemplateshadingbackground{yellow!5}{blue!15} % фон
+%--------------------
+
+%----------------------
+% нежно-фиолетовый
+%\usecolortheme{seahorse} 
+%\beamertemplateshadingbackground{yellow!5}{blue!15} % фон
+% цвета шрифта и фона лучше использовать:
+%\definecolor{fontcolor}{RGB}{7,20,153} % тёмно-синий шрифт
+%\definecolor{bgcolor}{RGB}{174,179,233} % нежно-фиолетовый фон
+%-----------------------
+%% % тёмно-вишнёвый %%%%%
+\usecolortheme[RGB={109,4,4}]{structure} 
+\beamertemplateshadingbackground{blue!12}{yellow!5} % лучше такой, но можно и ниже 
+\definecolor{bgcolor}{RGB}{140,17,17} % красный
+\definecolor{fontcolor}{RGB}{255,255,255} % белый шрифт
+%------------------------
+%%% тёмно-зелёный %%%%%%%%
+%\usecolortheme[RGB={116,146,57}]{structure} 
+%\beamertemplateshadingbackground{yellow!5}{green!5} % 
+%\definecolor{fontcolor}{RGB}{255,255,255} % белый шрифт
+%\definecolor{bgcolor}{RGB}{106,135,51} % зелёный фон
+%--------------------------
+%%% светло-зелёный %%%%%
+%\usecolortheme[RGB={214,237,171}]{structure}
+%\beamertemplateshadingbackground{yellow!5}{green!5} % 
+%\definecolor{fontcolor}{RGB}{0,0,0} % чёрный шрифт
+%\definecolor{bgcolor}{RGB}{163,199,92} % зелёный
+%----------------------------
+%% персиково-коричневый %%%%
+%\usecolortheme[RGB={223,214,199}]{structure}
+%\beamertemplateshadingbackground{yellow!5}{orange!10}% 
+%\definecolor{fontcolor}{RGB}{113,70,3} % коричневый шрифт
+%\definecolor{bgcolor}{RGB}{225,201,162} % светло-коричневый
+%---------------------------
+%%% жёлтый %%%%%%%%
+%\usecolortheme[RGB={253,244,184}]{structure}
+%\definecolor{fontcolor}{RGB}{113,70,3}% коричневый шрифт
+%\definecolor{bgcolor}{RGB}{247,230,118}% тёмно-жёлтый
+%\beamertemplateshadingbackground{yellow!5}{orange!10}% 
+%---------------------------
+%%% коричнево-оранжевый %%%
+%\usecolortheme[RGB={252,202,175}]{structure}
+%\beamertemplateshadingbackground{yellow!5}{orange!12}% 
+%\definecolor{fontcolor}{RGB}{113,70,3}% коричневый шрифт
+%\definecolor{bgcolor}{RGB}{247,184,149}% оранжево-розовый
+%----------------------------
+%%% розовый %%%%
+%\usecolortheme[RGB={247,149,158}]{structure}
+%\definecolor{fontcolor}{RGB}{125,8,19} % тёмно-красный шрифт
+%\definecolor{bgcolor}{RGB}{249,190,196}% светло-розовый фон
+%\beamertemplateshadingbackground{yellow!5}{red!9}% 
+%------------------------------
+%%%%%%%%%%%%%%%%%%
+
+%%% если хочется использовать прозрачность %%%%%%%%%%%
+%\beamersetuncovermixins{\opaqueness<1>{25}}{\opaqueness<2->{15}}
+%%%%%%%%%%
+
+%% переопределение основных элементов %%%
+\newtheorem{defR}[theorem]{Определение}
+\newtheorem{exR}[theorem]{Пример}
+\newtheorem{theoremR}[theorem]{Теорема}
+\newtheorem{lemmaR}[theorem]{Лемма}
+\newtheorem{proofR}[theorem]{Доказательство}
+\newtheorem{corollaryR}[theorem]{Следствие}
+\newtheorem{factR}[theorem]{Аксиома}
+\newtheorem{facts}[theorem]{Аксиомы}
+
+\renewenvironment{definition}{\begin{defR}}{\end{defR}}
+\renewenvironment{example}{\begin{exR}}{\end{exR}}
+\renewenvironment{theorem}{\begin{theoremR}}{\end{theoremR}}
+\renewenvironment{lemma}{\begin{lemmaR}}{\end{lemmaR}}
+\renewenvironment{proof}{\begin{proofR}}{\end{proofR}}
+\renewenvironment{corollary}{\begin{corollaryR}}{\end{corollaryR}}
+\renewenvironment{fact}{\begin{factR}}{\end{factR}}
+%%%%
+%\begin{document}

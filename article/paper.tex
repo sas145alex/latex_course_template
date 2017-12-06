@@ -1,0 +1,22 @@
+\documentclass[a4paper,12pt]{memoir}
+%
+%\usepackage{diagbox} %для таблиц
+\usepackage{tikz}
+\usetikzlibrary{chains, shapes.misc, matrix}
+
+
+\usepackage{msiu_term_article}
+
+\lstset{language=Ruby,inputencoding=utf8/koi8-r,basicstyle=\small,
+	stringstyle=\ttfamily,xleftmargin=1cm}
+
+\begin{document}
+	\annotation{Аннотация}{\input{annotation}}
+	\listofcontents{Содержание}
+
+	\input{sect1}
+	\newpage
+
+	% \appendix{Приложение А}{\input{appendix1}}
+
+\end{document}

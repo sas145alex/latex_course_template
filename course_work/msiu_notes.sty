@@ -1,0 +1,205 @@
+% version   = "0.1"
+\usepackage{cmap}
+\usepackage[utf8]{inputenc}
+\usepackage[russian]{babel}
+\usepackage[TS1,T2A]{fontenc}
+\usepackage{indentfirst}%делать отступ в начале параграфа 
+\usepackage{amsmath,amssymb,amsfonts,amscd,amsthm}% расширенный набор матем. символов
+\usepackage{color}% для использования цвета
+\usepackage{graphicx} % для вставки рисунков
+\usepackage{listingsutf8} % это лучше, чем verbatim
+\usepackage{russmath} % для корректного переноса матем. формул
+
+\long\def\head#1#2#3#4{
+\mainmatter
+\noindent
+\thispagestyle{empty}
+\vspace{0.5cm}
+\parbox{10cm}{
+\includegraphics[width=0.2\textwidth]{msiu_logo}\\
+#1\\
+\texttt{#2}
+
+\color{black}{
+\hrule
+}
+}
+
+
+\vspace{2.0cm}
+\noindent
+{\large #3}
+
+\section*{#4}
+\markboth{#4}{#4}
+
+}
+
+
+\def\+{\hskip 0.15mm}
+
+\lccode`\-=`\-\defaulthyphenchar=127 %перенос слов с дефисами
+
+\emergencystretch=2pt
+\hfuzz=0.8pt
+
+%Размер страницы
+\settrimmedsize{297mm}{210mm}{*} % a4paper: 297mm * 210mm% 
+%\setlength{\trimtop}{5.5mm}
+%\setlength{\trimedge}{\stockwidth}
+%\addtolength{\trimedge}{-\paperwidth}
+
+% Оформление страницы
+\makepagestyle{notes}
+\makeevenhead{notes}{\normalfont\footnotesize\bfseries\leftmark}{}{\normalfont\footnotesize\bfseries\thepage}
+\makeoddhead{notes}{\normalfont\footnotesize\bfseries\rightmark}{}{\normalfont\footnotesize\bfseries\thepage}
+%\setlength{\textwidth}{\textwidth}
+%\makerunningwidth{notes}{\headwidth}
+\makeheadrule{notes}{\textwidth}{\normalrulethickness}
+\makeheadposition{notes}{center}{center}{}{}
+\pagestyle{notes}
+
+
+
+%Размер текста
+\settypeblocksize{46\baselineskip}{160mm}{*}
+%\settypeblocksize{5cm}{*}{1} 
+%\setulmargins{*}{*}{1.5} % для полей 2 см вокруг
+%\setlrmargins{*}{*}{1.1} % для полей 2 см вокруг
+\setulmargins{*}{*}{0.8}
+\setlrmargins{*}{*}{1.0}
+\checkandfixthelayout
+\typeoutlayout
+
+\newcommand{\link}[1]{\texttt{#1}}
+
+%Нумерация рисунков и таблиц
+\renewcommand{\thefigure}{\arabic{figure}}
+\renewcommand{\theequation}{\arabic{equation}}
+\addtodef{\mainmatter}{}{%
+\counterwithout{figure}{section}%
+\counterwithout{table}{section}%
+%\counterwithout{longtable}{section}%
+}
+
+\renewcommand{\thesection}{{\bfseries\Large\arabic{section}}}
+\setsecnumformat{%
+   \csname pre#1\endcsname\,%
+   \csname the#1\endcsname.\ %
+}
+
+\renewcommand{\thesubsection}{\large\arabic{subsection}}
+%\setsecheadstyle{\centering\scshape}
+\setbeforesecskip{\onelineskip}
+\setaftersecskip{0.6\onelineskip}
+
+\newcommand{\adddot}[1]{%
+  \raggedright\bfseries #1.}
+\setsubsubsecheadstyle{\adddot}
+\setbeforesubsubsecskip{\onelineskip}
+\setaftersubsubsecskip{-0.2cm}
+
+%В подписях к рисункам разделитель - точка
+%\captiondelim{ }
+\captiondelim{.\space}
+%Уменьшенный шрифт для подписей
+\captionnamefont{\small\itshape}
+\captiontitlefont{\small}
+% Пробел до и после рисунка
+\setlength{\intextsep}{6mm}
+%\setlength{\textfloatsep}{3mm}
+%Пробел до и после подписи к рисунку
+\setlength{\abovecaptionskip}{2mm}
+\setlength{\belowcaptionskip}{0mm}
+\changecaptionwidth\captionwidth{0.85\linewidth}
+
+%Убираем большие расстояния по вертикали в списках
+\tightlists
+
+% Вставка программ
+\def\prgboxed#1{
+  \noindent
+  \begin{minipage}{\hsize}
+    \begin{small}
+      \boxedverbatiminput{body/roganov_verbatim/#1}
+    \end{small}
+  \end{minipage}
+}
+
+% Оформление примеров
+\newcounter{taskno}[section]
+\newenvironment{task}{%
+\par\medskip%
+\addtocounter{taskno}{1}%
+\def\@currentlabel{\arabic{taskno}}
+\noindent{\bfseries Пример \arabic{taskno}. }%
+}{}
+
+% Оформление определений
+\newcounter{defno}[section]
+\newenvironment{definition}{%
+\par\medskip%
+\addtocounter{defno}{1}%
+\def\@currentlabel{\arabic{defno}}
+\noindent{\bfseries Определение \arabic{defno}. }%
+}{}
+
+% Оформление решений
+\newenvironment{solution}{%
+\par\medskip\noindent{\bfseries Решение. }}
+{}
+
+% Оформление основного текста после решений и других ситуаций, когда
+% требуется дополнительный вертикальный промежуток для исправления
+% ошибок в макросах!
+\newcommand{\fixerrors}{%
+\par\indent}
+
+% Оформление теорем
+\newcounter{thmno}[section]
+\newenvironment{theorem}{%
+\par\medskip%
+\addtocounter{thmno}{1}%
+\def\@currentlabel{\arabic{thmno}}
+\noindent{\bfseries Теорема \arabic{thmno}. 
+}\itshape}
+{\normalfont}
+
+% Оформление предложений
+\newcounter{prepno}[section]
+\newenvironment{prep}{%
+\par\medskip%
+\addtocounter{prepno}{1}%
+\def\@currentlabel{\arabic{prepno}}
+\noindent{\bfseries Предложение \arabic{prepno}. 
+}\itshape}
+{\normalfont}
+
+% Оформление следствий
+\newenvironment{corol}{%
+\par\medskip%
+\noindent{\bfseries Следствие. }\itshape}
+{\normalfont}
+
+% Оформление доказательств
+\newenvironment{myproof}{%
+\par\medskip%
+\noindent{\bfseries Доказательство. }}
+{\hfill$\square$}
+
+% Оформление замечаний
+\newcommand{\remark}[1]{{\par\medskip\noindent\bfseries #1. }}
+
+% Несколько дополнительных определений 
+\def\Er{\hskip-4.5mm\raisebox{-1mm}{\hbox{{\color{hyperref}\Huge$\times$}}}}
+\def\ER{\hskip-5mm\raisebox{-1mm}{\hbox{{\color{hyperref}\Huge$\times$}}}}
+\def\ERR{\hskip-7.5mm\raisebox{-1mm}{\hbox{{\color{hyperref}\Huge$\times$}}}}
+\newcommand{\cfbox}[1]{{\color{hyperref}\fbox{#1}}}
+\def\N{\mathbb{N}}
+\def\Z{\mathbb{Z}}
+\def\R{\mathbb{R}}
+\def\Q{\mathbb{Q}}
+\def\CC{\mathbb{C}}
+
+
+
