@@ -1,0 +1,50 @@
+\documentclass[a4paper,12pt]{memoir}
+%
+%\usepackage{diagbox} %для таблиц
+\usepackage{tikz}
+
+\usetikzlibrary{chains, shapes.misc, matrix}
+%
+
+\usepackage{listingsutf8} % это лучше, чем verbatim
+\usepackage{msiu_term_work}
+
+\lstset{language=Ruby,inputencoding=utf8/koi8-r,basicstyle=\small,
+	stringstyle=\ttfamily,xleftmargin=1cm}
+
+\begin{document}
+	\renewcommand{\contentsname}{{\Large{Содержание}\hfill}}
+
+	\title{Веб-технологии}
+	{Разработка информационной системы библиотеки}
+	{141131}
+	{А.\+С.~Сазонов}
+	{к.т.н., доцент}
+	{В.\+Ю.~Радыгин}
+	{2017}
+
+
+	%\setlength{parindent}{0pt}
+
+	\input{intro}
+	%\input{about}
+	\newpage
+
+	\input{sect1}
+	\newpage
+
+%	\input{sect2}
+%	\newpage
+%
+%	\input{sect3}
+%	\newpage
+
+	\input{ending}
+	\newpage
+
+	\input{bib}
+	\newpage
+
+	%\input{appendix1}
+
+\end{document}

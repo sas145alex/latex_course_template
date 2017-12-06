@@ -1,0 +1,7 @@
+.row
+  = f.fields_for :author do |fa|
+    .col-md-3= fa.text_field :fn, class: 'form-control'
+    .col-md-3= fa.text_field :ln, class: 'form-control'
+    .col-md-3= fa.text_field :sn, class: 'form-control'
+    .col-md-3= fa.text_field :author_index, class: 'form-control'
+    = fa.hidden_field :id

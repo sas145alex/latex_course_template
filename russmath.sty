@@ -1,0 +1,56 @@
+%% russmath.sty        mailto:leontiev@aport.ru
+%%\catcode`@=11
+
+\newif\ifBrkFlag
+\def\allowmathbreak{\global\BrkFlagtrue\global\relpenalty=10000
+\global\binoppenalty=10000}
+\def\cancelmathbreak{\global\BrkFlagfalse\global\relpenalty=500
+\global\binoppenalty=700}
+\def\m@th{\mathsurround=0pt}
+\def\@thick{\hbox{\m@th$\mskip\thickmuskip$}}
+\def\@med{\hbox{\m@th$\mskip\medmuskip$}}
+\def\brel#1{\ifBrkFlag\discretionary{\@thick\hbox{\m@th$#1$}}{}{}\fi #1}
+\def\bbin#1{\ifBrkFlag\discretionary{\@med\hbox{\m@th$#1$}}{}{}\fi #1}
+\def\bmultiply{\ifBrkFlag
+\discretionary{\@med\hbox{\m@th$\times$}}{\hbox{\m@th$\times$}\@med}{}
+\else\discretionary{\@med\hbox{\m@th$\times$}}{}{}\fi}
+\def\bsim{\brel{\sim}}
+\def\bgreater{\brel{>}}
+\def\bless{\brel{<}}
+\def\bin{\brel{\in}}
+\def\bequals{\brel{=}}
+\def\bne{\brel{\ne}}
+\def\ble{\brel{\le}}
+\def\bge{\brel{\ge}}
+\def\bequiv{\brel{\equiv}}
+\def\bto{\brel{\to}}
+\def\bplus{\bbin{+}}
+\def\bminus{\bbin{-}}
+\def\bldots{\ifBrkFlag
+\mathord{}\discretionary{\ldots}{}{}\fi\mathord{\ldots}}
+\def\bdots{\relax\ifmmode\bldots\else$\m@th\bldots$\fi}
+
+%% WARNING: \bcdot DOES NOT work within groups!
+%% ~~~~~~~  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\def\bcdot{\ifinner\ifBrkFlag $\kern-\mathsurround%%
+\discretionary{\hbox{\m@th$\@med{\times}$}}
+{\hbox{\m@th${\times}\@med$}}{\hbox{\m@th$\@med{\cdot}\@med$}}%%
+\kern-\mathsurround$\else\cdot\fi\else\cdot\fi}
+
+%\let\умножить=\bmultiply
+%\let\больше=\bgreater
+%\let\меньше=\bless
+%\let\равно=\bequals
+%\let\плюс=\bplus
+%\let\минус=\bminus
+
+%% Принятые в России разрывы внутритекстовых формул
+\allowmathbreak
+
+%% Возврат к стандартным (западным) правилам разрыва формул
+%% \cancelmathbreak
+
+\def\breakcases#1#2{\ifBrkFlag #1\else #2\fi}
+
+%%\catcode`@=12
+

@@ -1,0 +1,50 @@
+\section{Приложение А}
+Реалицазия структуры \texttt{Queue} и некоторых методов для работы с ней:
+\begin{verbatim}
+//определение элемента Queue (Queue_Element):
+typedef struct Queue_Element{
+  int data;
+  struct Queue_Element *next;
+} Queue_Element;
+
+//определение Queue:
+typedef struct Queue{
+  struct Queue_Element *head;
+  struct Queue_Element *tail;
+  int size;
+} Queue;
+
+//инициализация Queue:
+Queue* Queue_init() {
+  Queue *tmp = (Queue*) malloc(sizeof(Queue));
+  tmp -> size = 0;
+  tmp -> head = tmp -> tail = NULL;
+  return tmp;
+}
+
+//дабавление элемента:
+void Queue_push(Queue *q, int d) {
+  Queue_Element *new_element = (Queue_Element*)
+                            malloc(sizeof(Queue_Element));
+  new_element -> data = d;
+  if (q -> head == NULL){
+    q -> head = q -> tail = new_element;
+    q -> head -> next = q->tail->next= NULL;
+  }else{
+    q -> tail -> next = new_element;
+    q -> tail = new_element;
+  }
+  q -> size++;
+}
+
+//удалаение Queue:
+void Queue_free(Queue *q){
+  Queue_Element* tmp; int i;
+  for (i=0; i < q->size; i++){
+    tmp = q -> head;
+    (q -> head) = (q -> head -> next);
+    free(tmp);
+  }
+  free(q);
+}
+\end{verbatim}

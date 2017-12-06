@@ -1,0 +1,8 @@
+@media screen and (max-width: $screen-sm)
+  table
+    thead
+      display: none
+    tr, td
+      display: block
+    td:before
+      content: attr(data-label)
